@@ -1,0 +1,15 @@
+<form name="adminForm" id="adminForm" action="/admin/pages/save/" method="post">
+<table class="adminlist" width="100%">
+<tr>
+	<td>Page Title</td><td><input type="text" name="title" value="<?= $this->page['title'];?>"></td></tr>
+	<td valign="top">Page Content</td><td>
+	<?= $this->FormTinyMce('body',$this->page['body']);?>
+	</td></tr>
+	<tr><td>Meta Keywords</td><td><input type="text" name="meta_keywords" value="<?= $this->page['meta_keywords'];?>"></td></tr>
+	<tr><td>Meta Description</td><td><input type="text" name="meta_description" value="<?= $this->page['meta_description'];?>"></td></tr>
+	<tr><td>Published</td><td><select name="published"><option value="1">Yes</option><option value="0" <? if($this->page['published'] == 0) echo ' SELECTED';?>>No</option></select></td></tr>
+	<tr><td>Show on Frontpage</td><td><select name="frontpage"><option value="1">Yes</option><option value="0" <? if($this->page['frontpage'] == 0) echo ' SELECTED';?>>No</option></select></td></tr>
+	<tr><td>Access Level</td><td><?= $this->AccessSelect($this->page['role']);?></td></tr>
+	<input type="hidden" name="id" value="<?= $this->page['id'];?>">
+</table>
+</form>

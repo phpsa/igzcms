@@ -1,0 +1,23 @@
+<?php
+if(file_exists(BASE_PATH . '/layouts/pages/user/login/index.phtml'))
+{
+	include(BASE_PATH . '/layouts/pages/user/login/index.phtml');
+}else{
+	?>
+<form action="/user/login/" method="post">
+<table width="100%">
+<tr>
+	<td>Username</td><td><input type="text" name="username" value="<?= @$_POST['username'];?>"></td>
+</tr>
+<tr>
+	<td>Password</td><td><input type="password" name="password"></td>
+</tr>
+<tr>
+	<td></td><td><input type="submit" value="Login"></td>
+</tr>
+</table>
+
+</form>
+<?php
+}
+?>

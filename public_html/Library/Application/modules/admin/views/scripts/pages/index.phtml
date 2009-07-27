@@ -1,0 +1,37 @@
+
+<table class="adminlist">
+<thead>
+	<tr>
+		<th>#id</th>
+		<th>Page Title</th>
+		<th>Published</th>
+		<th>Created</th>
+		<th>Modified</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
+<?php
+$r = 0;
+foreach($this->pages as $page)
+{
+	?>
+	<tr class="row<?=$r;?>">
+		<td><?=$page['id'];?></td>
+		<td><?= stripslashes($page['title']);?></td>
+		<td><? if ($page['published'] == 1) echo 'Published'; else echo 'Not Published';?></td>
+		<td><?= DATE("Y-m-d", strtotime($page['createdate']));?></td>
+		<td><?
+			if($page['moddate'] > 0) echo DATE("Y-m-d", strtotime($page['moddate'])); else echo 'Never';?></td>
+				<td><a href="/admin/pages/edit/id/<?php echo $page['id'];?>">[ Edit ]</a> | <a href="/admin/pages/delete/id/<?php echo $page['id'];?>">[ DELETE ]</a> | <a href="/admin/pages/menu/id/<?php echo $page['id'];?>">[ ADD TO MENU ]</a></td>		
+	</tr>
+<?php
+$r = 1 - $r;
+}
+?>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="6"><?php echo $this->paginationControl($this->pages,'Sliding', 'pagination_control.phtml'); ?></td></tr>
+</tfoot>
+</table>

@@ -1,0 +1,83 @@
+<?php 
+// application/layouts/scripts/layout.phtml
+
+echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<?php echo $this->headTitle() ?>
+<?php echo $this->headMeta() ?>
+
+
+  <?php echo $this->headLink()->appendStylesheet('/layouts/global.css') ?>
+</head> 
+<body>
+
+<div id="wrapper">
+
+	<div id="header">
+		<div id="menu">
+		<?php 
+		$menu = $this->navigation()->findOneByLabel('MENUTOP');
+		echo $this->navigation()->menu()->setMaxDepth(0)->renderMenu($menu); ?>
+		</div>
+		<!-- end #menu -->
+		<div id="search">
+			<form method="get" action="">
+				<fieldset>
+				<input type="text" name="s" id="search-text" size="15" />
+				<input type="submit" id="search-submit" value="Search" />
+				</fieldset>
+			</form>
+		</div>
+		<!-- end #search -->
+	</div>
+	<!-- end #header -->
+	
+	<div id="logo">
+		<h1><a href="#">IGzCMS </a></h1>
+		<p><em> Framwork based on Zend Framework</em></p>
+	</div>
+	<hr />
+
+<div id="page">
+<div id="content">
+<?php
+if($this->notificationMessages)
+{
+	echo '<div class="notificationMessage">' . $this->notificationMessages[0] . '</div>';
+}
+?>
+<?php echo $this->layout()->content ?>
+
+</div>
+<!-- end #content -->
+<div id="sidebar">
+<ul>
+<li>
+<h2>Aliquam tempus</h2>
+<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in consectetuer hendrerit, volutpat.</p>
+</li>
+<li>
+<h2>MENU</h2>
+<?php
+$menu = $this->navigation()->findOneByLabel('MENUSIDE');
+echo $this->navigation()->menu()->setMaxDepth(4)->renderMenu($menu); ?>
+</li>
+
+</ul>
+</div>
+<!-- end #sidebar -->
+<div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #page -->
+
+<div id="footer">
+<p>Copyright (c) 2008 Sitename.com. All rights reserved. .</p>
+</div>
+<!-- end #footer -->
+</div>
+
+</body>
+</html>
+ 

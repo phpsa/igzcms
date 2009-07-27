@@ -1,0 +1,81 @@
+<?php 
+// application/layouts/scripts/layout.phtml
+
+echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <?php echo $this->headTitle() ?>
+  <?php echo $this->headMeta() ?>
+  <?php echo $this->headLink()->appendStylesheet('/layouts/admin/global.css') ?>
+</head> 
+<?php echo $this->headScript() ?>
+<body>
+
+<div id="header">
+
+<h1>IG_CMS</h1>
+<h2>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Administration Area</h2>
+
+</div>
+
+<div id="menu">
+
+<?php 
+$menu = $this->navigation()->findOneByLabel('MENUADMIN');
+echo $this->navigation()->menu()->setMaxDepth(0)->renderMenu($menu); ?>
+
+<div></div>
+
+</div>
+
+
+<div id="container">
+<div id="adminactions">
+	<div id="module-heading"><?= $this->moduleHeading;?></div><div id="module-actions"><?= $this->moduleActions;?></div>
+	<div id="clear"></div>
+</div>
+<div id="primarycontainer">
+<div id="primarycontent">
+
+<?php
+if($this->notificationMessages)
+{
+	echo '<div class="notificationMessage">' . $this->notificationMessages[0] . '</div>';
+}
+?>
+<?php echo $this->layout()->content ?>
+
+</div>
+</div>
+
+<div id="secondarycontent">
+
+<!-- Secondary content start -->
+<h4>Admin Module Menu to go here</h4>
+<ul>
+<li><a href="#">menu link</a></li>
+
+</ul>
+
+<!-- Secondary content end -->
+
+</div>
+
+<div class="clearit"></div>
+
+</div>
+
+<div id="footer">
+
+</div>
+
+
+
+
+
+</div>
+
+</body>
+</html>
+ 

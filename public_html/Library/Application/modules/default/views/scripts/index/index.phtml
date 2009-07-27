@@ -1,0 +1,20 @@
+<?php
+if(file_exists(BASE_PATH . '/layouts/pages/index/index.phtml'))
+{
+	include(BASE_PATH . '/layouts/pages/index/index.phtml');
+}else{
+	$page = $this->page;
+?>
+	<div class="post">
+	<h2 class="title"><?= stripslashes($page['title']);?></h2>
+		<div class="entry">
+			<p>
+			<?= stripslashes($page['body']);?>
+			</p>
+		</div>
+	</div>
+<?php
+	
+}
+?>
+
