@@ -1,0 +1,6 @@
+<?php
+$menu = $this->navigation()->findOneByLabel('MENUTOP');
+echo $this->navigation()->menu()->setMaxDepth(4)->renderMenu($menu); ?>
+<?php
+$menu = $this->navigation()->findOneByLabel('MENUSIDE');
+echo $this->navigation()->menu()->setMaxDepth(4)->renderMenu($menu); ?>

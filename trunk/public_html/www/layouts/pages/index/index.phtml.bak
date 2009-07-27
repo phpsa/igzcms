@@ -1,0 +1,16 @@
+
+<center>
+    <div id="welcome">
+        <center>
+        <br />
+        <h1>Welcome to the <span id="zf-name">Zend Framework!</span><h1 />
+        <h3>This is your project's main page<h3 /><br /><br />
+        <div id="more-information">
+            <br />
+            <img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" /><br /><br />
+            Helpful Links: <br />
+            <A href="http://framework.zend.com/">Zend Framework Website</a> |
+            <A href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>
+        </div>
+    </div>
+</center>
