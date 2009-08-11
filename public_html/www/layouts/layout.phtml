@@ -10,6 +10,10 @@ echo $this->doctype() ?>
 
 
   <?php echo $this->headLink()->appendStylesheet('/layouts/global.css') ?>
+  
+  <?= $this->headScript() ?>
+  <?= $this->jQuery(); ?>
+ 
 </head> 
 <body>
 
@@ -23,12 +27,8 @@ echo $this->doctype() ?>
 		</div>
 		<!-- end #menu -->
 		<div id="search">
-			<form method="get" action="">
-				<fieldset>
-				<input type="text" name="s" id="search-text" size="15" />
-				<input type="submit" id="search-submit" value="Search" />
-				</fieldset>
-			</form>
+		<?=$this->drawBlock('Search');
+		?>
 		</div>
 		<!-- end #search -->
 	</div>
@@ -55,25 +55,23 @@ if($this->notificationMessages)
 <div id="sidebar">
 <ul>
 <li>
-<h2>Aliquam tempus</h2>
-<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in consectetuer hendrerit, volutpat.</p>
-</li>
-<li>
 <h2>MENU</h2>
 <?php
 $menu = $this->navigation()->findOneByLabel('MENUSIDE');
 echo $this->navigation()->menu()->setMaxDepth(4)->renderMenu($menu); ?>
 </li>
-
+<?php
+echo  $this->drawBlock('Left', array('<li>','</li>'));
+?>
 </ul>
 </div>
 <!-- end #sidebar -->
 <div style="clear: both;">&nbsp;</div>
 </div>
 <!-- end #page -->
-
+<!--Copyright (c) 2008 Sitename.com. All rights reserved. .-->
 <div id="footer">
-<p>Copyright (c) 2008 Sitename.com. All rights reserved. .</p>
+<p><?= stripslashes(sprintf($this->translate('copyright'), date("Y"), $this->siteName.' '));?></p>
 </div>
 <!-- end #footer -->
 </div>

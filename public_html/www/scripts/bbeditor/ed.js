@@ -1,4 +1,9 @@
 /*****************************************/
+// Modified by Craig G Smith to work with the Zend Framework
+// Changes:
+// Added bbcodePath variable instead of hardcoded per line...
+// renamed class of images from button to bbbutton for compatability
+// *** Original Author ***
 // Name: Javascript Textarea BBCode Markup Editor
 // Version: 1.3
 // Author: Balakrishnan
@@ -6,23 +11,24 @@
 // License: Free
 // URL: http://www.corpocrat.com
 /******************************************/
-
+var bbcodePath = '/scripts/bbeditor/';
 var textarea;
 var content;
-document.write("<link href=\"bbeditor/styles.css\" rel=\"stylesheet\" type=\"text/css\">");
+document.write("<link href=\""+bbcodePath+"styles.css\" rel=\"stylesheet\" type=\"text/css\">");
+
 
 
 function edToolbar(obj) {
-    document.write("<div class=\"toolbar\">");
-	document.write("<img class=\"button\" src=\"bbeditor/images/bold.gif\" name=\"btnBold\" onClick=\"doAddTags('[b]','[/b]','" + obj + "')\">");
-    document.write("<img class=\"button\" src=\"bbeditor/images/italic.gif\" name=\"btnItalic\" onClick=\"doAddTags('[i]','[/i]','" + obj + "')\">");
-	document.write("<img class=\"button\" src=\"bbeditor/images/underline.gif\" name=\"btnUnderline\" onClick=\"doAddTags('[u]','[/u]','" + obj + "')\">");
-	document.write("<img class=\"button\" src=\"bbeditor/images/link.gif\" name=\"btnLink\" onClick=\"doURL('" + obj + "')\">");
-	document.write("<img class=\"button\" src=\"bbeditor/images/picture.gif\" name=\"btnPicture\" onClick=\"doImage('" + obj + "')\">");
-	document.write("<img class=\"button\" src=\"bbeditor/images/ordered.gif\" name=\"btnList\" onClick=\"doList('[LIST=1]','[/LIST]','" + obj + "')\">");
-	document.write("<img class=\"button\" src=\"bbeditor/images/unordered.gif\" name=\"btnList\" onClick=\"doList('[LIST]','[/LIST]','" + obj + "')\">");
-	document.write("<img class=\"button\" src=\"bbeditor/images/quote.gif\" name=\"btnQuote\" onClick=\"doAddTags('[quote]','[/quote]','" + obj + "')\">"); 
-  	document.write("<img class=\"button\" src=\"bbeditor/images/code.gif\" name=\"btnCode\" onClick=\"doAddTags('[code]','[/code]','" + obj + "')\">");
+    document.write("<div class=\"bbtoolbar\">");
+	document.write("<img class=\"bbbutton\" src=\""+bbcodePath+"images/bold.gif\" name=\"btnBold\" onClick=\"doAddTags('[b]','[/b]','" + obj + "')\">");
+	document.write("<img class=\"bbbutton\" src=\""+bbcodePath+"images/italic.gif\" name=\"btnItalic\" onClick=\"doAddTags('[i]','[/i]','" + obj + "')\">");
+	document.write("<img class=\"bbbutton\" src=\""+bbcodePath+"images/underline.gif\" name=\"btnUnderline\" onClick=\"doAddTags('[u]','[/u]','" + obj + "')\">");
+	document.write("<img class=\"bbbutton\" src=\""+bbcodePath+"images/link.gif\" name=\"btnLink\" onClick=\"doURL('" + obj + "')\">");
+	document.write("<img class=\"bbbutton\" src=\""+bbcodePath+"images/picture.gif\" name=\"btnPicture\" onClick=\"doImage('" + obj + "')\">");
+	document.write("<img class=\"bbbutton\" src=\""+bbcodePath+"images/ordered.gif\" name=\"btnList\" onClick=\"doList('[LIST=1]','[/LIST]','" + obj + "')\">");
+	document.write("<img class=\"bbbutton\" src=\""+bbcodePath+"images/unordered.gif\" name=\"btnList\" onClick=\"doList('[LIST]','[/LIST]','" + obj + "')\">");
+	document.write("<img class=\"bbbutton\" src=\""+bbcodePath+"images/quote.gif\" name=\"btnQuote\" onClick=\"doAddTags('[quote]','[/quote]','" + obj + "')\">"); 
+	document.write("<img class=\"bbbutton\" src=\""+bbcodePath+"images/code.gif\" name=\"btnCode\" onClick=\"doAddTags('[code]','[/code]','" + obj + "')\">");
     document.write("</div>");
 	//document.write("<textarea id=\""+ obj +"\" name = \"" + obj + "\" cols=\"" + width + "\" rows=\"" + height + "\"></textarea>");
 				}

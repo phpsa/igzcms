@@ -314,6 +314,8 @@ table.adminlist .pagination { text-align: center;	 }
 	text-decoration:none;
 	white-space:normal;
 	width:40px;
+	background-position:center top;
+	background-repeat:no-repeat;
 
 }
 
@@ -327,9 +329,9 @@ table.adminlist .pagination { text-align: center;	 }
 	color: #0B55C4;
 }
 
-.buttongeneral
-{
-	background-image:url(/layouts/admin/images/adminheading.png);
-	background-position:center top;
-	background-repeat:no-repeat;
-}
+/* Admin Buttons */
+.buttongeneral{background-image:url(/layouts/admin/images/adminheading.png);}
+.buttonadd{background-image:url(/layouts/admin/images/add.png);}
+
+
+a img{border:none;}

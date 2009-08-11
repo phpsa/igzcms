@@ -1,0 +1,63 @@
+<html>
+<head>
+<title><?php echo $pageTitle;?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="css/css.css" media="screen" rel="stylesheet" type="text/css" >
+</head>
+<script>
+function validate(frm)
+{
+	<?php echo $js;?>
+	
+	if(dosubmit == true)
+	{
+		document.ballotform.submit();
+	}
+	else
+	{
+		alert(errormsgs);
+	}
+}
+</script>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<!-- ImageReady Slices (goods.psd) -->
+<table id="Table_01" width="985" align="center" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="985" height="100" style="background-image:url(images/goods-services_01.jpg);">
+		<center><span id="headertext"><big><strong>Complete Me</strong></big> by 25<sup>th</sup> August 2009 and win...<br>there are prizes worth more than *R100 000 up for grabs!</span></center>	</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/<?php echo $graphictop;?>" width="985" height="247" alt=""></td>
+	</tr>
+	<tr>
+		<td>
+		<img src="images/<?php echo $graphicbottom;?>" width="985" height="170" alt="">
+		<div id="tagline"><?php echo $tagline;?></td>
+	</tr>
+	<tr>
+		<td>
+		<div id="content">
+		<?php echo $pageContent;?>
+		</div>
+		<div id="entryform">
+			<h3>Entry Form: <?php echo $pageTitle;?></h3>
+		<table>
+			<tr><td>Name</td><td><input type="text" name="name" id="name"></td></tr>
+			<tr><td>Email Address:</td><td><input type="text" name="email" id="email"></td></tr>
+			<tr><td>Phone Number:</td><td><input type="text" name="phone_number" id="phone_number"></td></tr>
+			<tr><td></td><td><input type="button" value="Place Vote" style="width:100px;" onClick="validate(this);">
+		</table>
+		</div>
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td width="985" height="90" style="background-image:url(images/goods-services_05.jpg)">
+		<center><span id="footertext">Leisure Options - Best of Joburg - Readers' Choice Awards 2009 -  Engineered by <a href="http://www.igroup.co.za">IGroup</a></span></center></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+</body>
+</html>

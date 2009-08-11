@@ -12,8 +12,8 @@ class Admin_PagesController extends Ig_Controller_Admin
 	public function indexAction()
 	{
 		$this->view->moduleHeading = "Page Manager";
-		$this->_addButton('/admin/pages/add/', 'Add');
-		$this->_addButton('/admin/pages/add/', 'Add2');
+		$this->_addButton('/admin/pages/add/', 'Add', 'add');
+		//$this->_addButton('/admin/pages/add/', 'Add2');
 		$this->view->pages = $this->_model->listPages($this->_getParam('page'));
 	}
 	
@@ -62,6 +62,15 @@ class Admin_PagesController extends Ig_Controller_Admin
 	
 	public function deleteAction()
 	{
-		//Update set deleted
+		$page = array();
+		$page['id'] = $this->_getParam("id");
+		$page['deleted'] = '1';
+		$this->_model->save($page);
+		$this->_redirect("/admin/pages", "Page Deleted");
+	}
+	
+	public function menuAction()
+	{
+		
 	}
 }

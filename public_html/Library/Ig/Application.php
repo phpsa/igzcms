@@ -111,13 +111,58 @@ class Ig_Application
 		$acl = $this->setAcl();
 		Zend_Registry::set('ACL', $acl);
 		
+		$langNamespace = new Zend_Session_Namespace('language');
+		if($langNamespace->language == '') $langNamespace->langauge = $config->language;
+		
+		if($_POST['language']) $lang = $_POST['langauge'];
+		if($_GET['language']) $lang = $_GET['langauge'];
+		if($lang != '')
+		{
+			$langNamespace->langauge = $lang;
+		}
+		
+		
+		//$translate = new Zend_Translate('csv', $moduleFolder . '/default/Language/language.csv');
+		//www/Language/english/default.csv (optional)
+		if(file_exists(BASE_PATH . '/Language/'.$langNamespace->language.'/default.csv'))
+		{
+			$translate = new Zend_Translate('csv',BASE_PATH . '/Language/'.$langNamespace->language.'/default.csv');
+			
+			//modules/default/Language/english/langauge.csv (optional)
+			if(file_exists($moduleFolder . '/default/Language/'.$langNamespace->language.'/language.csv'))
+			{
+				$translate->addTranslation($moduleFolder . '/default/Language/'.$langNamespace->language.'/language.csv');
+			}
+				
+				$translate->addTranslation($moduleFolder . '/default/Language/language.csv');
+			//	$translate->addTranslation(BASE_PATH . '/Language/default.csv')
+		}else{
+			//modules/default/Language/english/language.csv (optional)
+			if(file_exists($moduleFolder . '/default/Language/'.$langNamespace->language.'/language.csv'))
+			{
+				$translate = new Zend_Translate('csv', $moduleFolder . '/default/Language/'.$langNamespace->language.'/language.csv');
+				$translate->addTranslation($moduleFolder . '/default/Language/language.csv');
+			}else{
+				//modules/default/Language/language.csv (required)
+				$translate = new Zend_Translate('csv', $moduleFolder . '/default/Language/language.csv');
+			}
+		}
+		/**
+		 * Translate notes:::
+		 * 1) Required: Application/modulename/Langauge/language.csv
+		 * 2) Optionals:
+		 * 2.1) -> Application/modulename/Language/languagename/language.csv
+		 * 2.2) -> www/Language/modulename.csv
+		 * 2.3) -> www/Language/langaugename/modulename.csv
+		 */
+		//$translate->addTranslation($moduleFolder . '/default/Language/language.csv');
+		
+		Zend_Registry::set('Zend_Translate', $translate);
+	
 		$menu = $this->generateMenus();
 		$container = new Zend_Navigation($menu);
 		Zend_Registry::set('Zend_Navigation', $container);
-
-  // Zend_Layout::setLayoutPath(array('layoutPath' => BASE_PATH . '/layouts/admin/'));
- //  $view = Zend_Layout::getMvcInstance();
-  // $view->setLayoutPath(array('layoutPath' => BASE_PATH . '/layouts/admin/'));
+		
 		return $frontController;
 	}
 	
@@ -163,6 +208,8 @@ class Ig_Application
 		$frontController->returnResponse(true);
 		return $frontController->dispatch();
 	}
+	
+	
 	
 	/**
 	* Renders the response
@@ -223,12 +270,13 @@ class Ig_Application
 			{
 				$menuArray[$item['id']] = array(
 					'label' => $item['label'], 
-					'title'=>$item['label'], 
+					'title'=> $item['label'], 
 					'module'=>$item['module'],
 					'controller'=>$item['controller'],
 					'action'=>$item['action'],
 					'params'=> $params,
 					'resource'   => 'menuitem:'.$item['id'],
+					'order'	=> $item['ordering'],
 					'pages'=>$this->_menuGenerate($menu_model, $item['id'],$menuid));
 
 			}else{
@@ -237,6 +285,7 @@ class Ig_Application
 					'title'	=> $item['title'],
 					'uri'	=> $item['params'],
 					'resource'   => 'menuitem:'.$item['id'],
+					'order'	=> $item['ordering'],
 					'pages'=>$this->_menuGenerate($menu_model, $item['id'],$menuid));
 			
 			}
