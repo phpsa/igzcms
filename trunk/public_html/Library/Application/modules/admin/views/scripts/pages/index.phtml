@@ -23,7 +23,7 @@ foreach($this->pages as $page)
 		<td><?= DATE("Y-m-d", strtotime($page['createdate']));?></td>
 		<td><?
 			if($page['moddate'] > 0) echo DATE("Y-m-d", strtotime($page['moddate'])); else echo 'Never';?></td>
-				<td><a href="/admin/pages/edit/id/<?php echo $page['id'];?>">[ Edit ]</a> | <a href="/admin/pages/delete/id/<?php echo $page['id'];?>">[ DELETE ]</a> | <a href="/admin/pages/menu/id/<?php echo $page['id'];?>">[ ADD TO MENU ]</a></td>		
+				<td><a href="/admin/pages/edit/id/<?php echo $page['id'];?>"><img src="/layouts/admin/images/page_edit.png" alt="Edit Page" title="Edit Page"></a> | <a href="/admin/pages/delete/id/<?php echo $page['id'];?>"><img src="/layouts/admin/images/page_delete.png" alt="Delete Page" title="Delete Page"></a> | <a href="/admin/pages/menu/id/<?php echo $page['id'];?>"><img src="/layouts/admin/images/page_link.png" alt="Link to Menu" title="Link to Menu"></a></td>		
 	</tr>
 <?php
 $r = 1 - $r;

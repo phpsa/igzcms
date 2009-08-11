@@ -413,3 +413,38 @@
 	 width:100%;
  }
  
+ .left_block
+ {
+	 padding-left:25px;
+ }
+ 
+ .left_block input
+ {
+	 margin-top: 5px;
+	 margin-bottom: 5px;
+ }
+ 
+ .error
+ {
+	 color:red;
+	 padding-left:10px;
+	 font-weight:bold;
+ }
+ 
+ .padmetop
+ {
+	margin-top:5px;
+ }
+ 
+ FORM DT {
+	 clear:both;
+	 width:33%;
+	 float:left;
+	 text-align:left;
+ }
+ 
+ FORM DD {
+	 float:left;
+	 width:66%;
+	 margin:0 0 0.5em 0.25em;
+ }

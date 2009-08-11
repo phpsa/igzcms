@@ -1,0 +1,32 @@
+
+<table class="adminlist">
+<thead>
+<tr>
+<th>Menu Name</th>
+<th>Access Level</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<?php
+$r = 0;
+foreach($this->menus as $menu)
+{
+	?>
+	<tr class="row<?=$r;?>">
+	
+	<td><?= $menu['menuname'];?></td>
+	<Td><?= $menu['role'];?></td>
+	<td>
+		
+		<a href="/admin/menu/editmenu/id/<?=$menu['id']?>"><img src="/layouts/admin/images/page_edit.png" alt="Edit Menu" title="Edit Menu"></a> | <a href="/admin/menu/deletemenu/id/<?=$menu['id']?>"><img src="/layouts/admin/images/page_delete.png" alt="Delete Menu" title="Delete Menu"></a> | <a href="/admin/menu/items/menu/<?=$menu['id'];?>"><img src="/layouts/admin/images/page_go.png" alt="View Menu Items" title="View Menu Items"></a>
+	</td>
+	</tr>
+	<?php
+	$r = 1 - $r;
+}
+?>
+</tbody>
+<tfoot>
+</tfoot>
+</table> 

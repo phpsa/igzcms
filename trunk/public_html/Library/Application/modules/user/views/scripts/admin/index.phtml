@@ -1,0 +1,43 @@
+
+<table class="adminlist">
+<thead>
+<tr>
+<th>#</th>
+<th>Username</th>
+<th>Full Name</th>
+<th>Email</th>
+<th>Role</th>
+<th>Active</th>
+<th>Registered</th>
+<th>Last Visit</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<?php
+$r = 0;
+foreach($this->data as $page)
+{
+	?>
+	<tr class="row<?=$r;?>">
+	<td>#<?=$page['id'];?></td>
+	<td><?=$page['username'];?></td>
+	<td><?=stripslashes($page['name']);?></td>
+	<td><?=$page['email'];?></td>
+	<td><?=$page['role'];?></td>
+	<td><? if($page['active'] == '1') echo 'Yes';else echo 'No';?></td>
+	<td><?=DATE("Y-m-d H:i:s", strtotime($page['createdate']));?></td>
+	<td><?=DATE("Y-m-d H:i:s", strtotime($page['moddate']));?></td>
+	<td>
+	</td>	
+		</tr>
+		<?php
+		$r = 1 - $r;
+}
+?>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="9"><?php echo $this->paginationControl($this->data,'Sliding', array('pagination_control.phtml','admin')); ?></td></tr>
+</tfoot>
+</table> 

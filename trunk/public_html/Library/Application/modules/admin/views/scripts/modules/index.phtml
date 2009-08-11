@@ -1,0 +1,47 @@
+
+<table class="adminlist">
+<thead>
+<tr>
+<th>Module Name</th>
+<th>Short Description</th>
+<th>Version</th>
+<th>Author</th>
+<th>Core</th>
+<th>Install Date</th>
+</tr>
+</thead>
+<tbody>
+<?php
+$r = 0;
+foreach($this->data as $page)
+{
+	?>
+	<tr class="row<?=$r;?>">
+	<td>
+	<?php if($page['module'] == 'default' || $page['module'] == 'admin'){?>
+   <a href="/admin"><?= stripslashes($page['moduleName']);?></a>
+   
+   <?php
+   }else{
+	   ?>
+	<a href="/<?=$page['module'];?>/admin"><?= stripslashes($page['moduleName']);?></a>
+	<?php
+   }
+   ?></td>
+	<td><?= stripslashes($page['shortDescription']);?></td>
+	<td><?= stripslashes($page['version']);?></td>
+	<td><?= stripslashes($page['author']);?></td>
+	<td><? if($page['isCore'] == 1) echo 'Yes'; else echo 'No';?></td>
+	<td><?
+	if($page['installDate'] > 0) echo DATE("Y-m-d", strtotime($page['installDate'])); else echo '';?></td>	
+		</tr>
+		<?php
+		$r = 1 - $r;
+}
+?>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="6"><?php echo $this->paginationControl($this->data,'Sliding', 'pagination_control.phtml'); ?></td></tr>
+</tfoot>
+</table>

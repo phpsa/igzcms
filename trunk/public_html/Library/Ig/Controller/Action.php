@@ -15,8 +15,15 @@ Class Ig_Controller_Action extends Zend_Controller_Action
 		$view->navigation()->setAcl($acl)->setRole($role);
 		$this->view = $view;
 		$view->addHelperPath("Ig/View/Helper","Ig_View_Helper");
+		$view->addHelperPath("ZendX/JQuery/View/Helper","ZendX_JQuery_View_Helper");
 		$this->_loadConfig();
-		
+		$module =  $this->_getParam('module');
+		if($module != 'default')
+		{
+			$modTrans = new Ig_Translate();
+			$modTrans->addFile($module);
+			$this->modTrans = $modTrans;
+		}
 		//read any flash message if sent!!!
 		$flashMessenger = $this->_helper->getHelper('FlashMessenger');
 		$this->view->notificationMessages = $flashMessenger->getMessages();
@@ -117,9 +124,30 @@ Class Ig_Controller_Action extends Zend_Controller_Action
 	{
 		$cfg = new Config();
 		$this->view->headTitle()->setSeparator(' :: ');
-		$this->view->headTitle($cfg->get('SITE_TITLE'));
+		
+		$this->view->siteName = $cfg->get('SITE_TITLE');
+		$this->view->headTitle($this->view->siteName );
 		$this->view->headMeta()->appendName('keywords',$cfg->get('SITE_KEYWORDS'));
 		$this->view->headMeta()->appendName('description', $cfg->get('SITE_DESC'));
+		$this->cfg = $cfg;
+	}
+	
+	public function sendMail($subject,$body,$tomail,$toname,$frommail='',$fromname='',$args=array())
+	{
+		$mail = new Zend_Mail();
+		if($fromname == '') $fromname = $this->cfg->getConfig('SITE_EMAIL_FROM');
+		if($frommail == '') $frommail = $this->cfg->getConfig('SITE_MAIN_EMAIL');
+		$mail->setFrom($emailFromMail, $emailFrom);
+		$mail->setSubject($subject);
+		$mail->setBodyText($body);
+		$mail->addTo($tomail,$toname);
+		return $mail->send();
+	
+	}
+
+	public function translate($str)
+	{
+		return Zend_View_Helper_Translate::translate($str);
 	}
 	
 }

@@ -8,9 +8,9 @@ Class Ig_Controller_Admin extends Ig_Controller_Action
 		parent::init();
 	}
 	
-	function _addButton($link, $title, $css = 'buttongeneral')
+	function _addButton($link, $title, $css = 'general')
 	{
-		$this->view->moduleActions .= '<a href="' . $link . '"><div  class="adminbutton ' . $css . '">' . $title . '</div></a>';
+		$this->view->moduleActions .= '<a href="' . $link . '"><div  class="adminbutton button' . $css . '">' . $title . '</div></a>';
 	}
 	
 	function _addSubmit($title = 'Save', $css = 'buttonsave')

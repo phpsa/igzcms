@@ -1,0 +1,35 @@
+<form name="adminform" action="/admin/menu/setorder/menu/<?=$this->menuid;?>" method="post" />
+<table class="adminlist">
+<thead>
+<tr>
+<th>#id</th>
+<th>Menu Title</th>
+<th>Role</th>
+<th width="50" nowrap>Ordering <input type="image" src="/layouts/admin/images/bullet_disk.png"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<?php
+$r = 0;
+foreach($this->data as $page)
+{
+	?>
+	<tr class="row<?=$r;?>">
+	<td><?=$page['id'];?></td>
+	<td><?= stripslashes($page['treename']);?></td>
+	<td><?= $page['role']; ?></td>
+	<td align="center"><input name="order[<?=$page['id'];?>]" value="<?= $page['ordering'] ;?>" size="2"></td>
+		<td><a href="/admin/menu/edititem/id/<?php echo $page['id'];?>"><img src="/layouts/admin/images/page_edit.png" alt="Edit Page" title="Edit Page"></a> | <a href="/admin/menu/deleteitem/id/<?php echo $page['id'];?>"><img src="/layouts/admin/images/page_delete.png" alt="Delete Page" title="Delete Page"></a></td>		
+		</tr>
+		<?php
+		$r = 1 - $r;
+}
+?>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="5"><?php echo $this->paginationControl($this->data,'Sliding', 'pagination_control.phtml'); ?></td></tr>
+</tfoot>
+</table>
+</form>

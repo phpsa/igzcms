@@ -1,0 +1,6 @@
+#Example csv file
+message1;Message 1
+message2;"This is <b>HTML</b>Text with 17\" long life menu" 
+copyright;Copyright (c) %s %s. All rights reserved | Powered by <a href="http://www.jhsa.co.za">IG-ZCMS</a>
+fullName;Full Name
+Guestbook; Sign Guestbook
